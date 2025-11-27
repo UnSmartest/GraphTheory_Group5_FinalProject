@@ -1,5 +1,11 @@
 # Mini Documentation
 
+## To Do List
+1. In the initialize(), make sure duplicate inputs are not appended and then decrement the edgeCount
+2. Find a way to visualize the graph
+3. If possible, list the edges that overlap
+4. **IF SUPER POSSIBLE**, suggest changes to our current graph
+
 ## Link to Canva (FP Proposal)
 https://www.canva.com/design/DAG4XHMYC4A/wiBz02iJiYRmIO4jYPUGBw/edit?utm_content=DAG4XHMYC4A&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
