@@ -1,4 +1,6 @@
 # uh, what are the libraries again?
+# networkX iirc
+# oh yeah, this is undirected graph btw, i mean sure we can make it directed but eh we're not really designing it that way
 
 # get the input
 def initialize():
@@ -35,4 +37,5 @@ isomorphicTo_K33_or_K5 = False
 if(isomorphicTo_K33_or_K5):
     print("There will be overlapping circuits no matter what...")
 else:
+
     print("There won't be any overlapping circuits! Yay!")
