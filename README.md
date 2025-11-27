@@ -56,3 +56,12 @@ and it'll still be the same.
 *Note : We definitely need to remove duplicating edges before running the EulerInequality() cuz this graph is technically planar. Look at image below as to why.*
 <img width="1047" height="695" alt="image" src="https://github.com/user-attachments/assets/25febdb6-a747-4797-ae44-7b1832568eb3" />
 
+**Test 2 to correct the Euler Inequality**
+```
+3
+3
+1 2
+2 3
+3 1
+```
+The "e <= 2*v - 4" is actually kinda wrong as it says the test case above is not planar. So, we removed that. We haven't done the edge unification from Test Case 1 yet though.
