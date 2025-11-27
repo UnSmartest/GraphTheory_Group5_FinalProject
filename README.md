@@ -35,6 +35,12 @@ and it'll still be the same.
 ## K3,3 and K5 Graph
 <img width="1095" height="493" alt="image" src="https://github.com/user-attachments/assets/8b6fc8db-5de6-4c80-a76e-bdb0733a6c2e" />
 
+# Suggestion from Pak Ilham
+1. During the FP Presentation, he'll ask you to explain how NetworkX is used
+2. Try to code the visualization
+3. Then show which edge overlaps
+4. **IF SUPER POSSIBLE**, suggest corrections to the graph (as in add nodes and where)(plus points)
+
 ## Some Test Case 
 
 **Test 1 to check whether EulerInequality() works**
