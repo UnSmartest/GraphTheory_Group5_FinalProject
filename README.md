@@ -1,10 +1,12 @@
-# Link to Canva (FP Proposal)
+# Mini Documentation
+
+## Link to Canva (FP Proposal)
 https://www.canva.com/design/DAG4XHMYC4A/wiBz02iJiYRmIO4jYPUGBw/edit?utm_content=DAG4XHMYC4A&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
-# Reference
+## Reference
 https://informatika.stei.itb.ac.id/~rinaldi.munir/Matdis/2024-2025/Makalah/Makalah-IF1220-Matdis-2024%20(156).pdf
 
-# Brief Intro to Problem
+## Brief Intro to Problem
 We're trying to check whether a circuit board can have no overlapping circuits. To do this, we check whether the circuit board is planar or not. So, for the code... Just get the input, create the graph, then simplify the graph by multiple means. After getting the simplest form of the graph, we check for a K3,3 or K5 subgraph. If a K3,3 or K5 subgraph exists, then it's not planar (meaning there's overlapping circuits). Otherwise, it is planar (meaning there isn't any overlapping circuits.)
 
 <br>
@@ -30,10 +32,10 @@ can become
 ```
 and it'll still be the same.
 
-# K3,3 and K5 Graph
+## K3,3 and K5 Graph
 <img width="1095" height="493" alt="image" src="https://github.com/user-attachments/assets/8b6fc8db-5de6-4c80-a76e-bdb0733a6c2e" />
 
-# Some Test Case 
+## Some Test Case 
 
 **Test 1 to check whether EulerInequality() works**
 ```
@@ -45,4 +47,6 @@ and it'll still be the same.
 1 2
 3 1
 ```
-*Note : We definitely need to remove duplicating edges before running the EulerInequality()*
+*Note : We definitely need to remove duplicating edges before running the EulerInequality() cuz this graph is technically planar. Look at image below as to why.*
+<img width="1047" height="695" alt="image" src="https://github.com/user-attachments/assets/25febdb6-a747-4797-ae44-7b1832568eb3" />
+
