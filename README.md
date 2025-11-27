@@ -32,3 +32,17 @@ and it'll still be the same.
 
 # K3,3 and K5 Graph
 <img width="1095" height="493" alt="image" src="https://github.com/user-attachments/assets/8b6fc8db-5de6-4c80-a76e-bdb0733a6c2e" />
+
+# Some Test Case 
+
+**Test 1 to check whether EulerInequality() works**
+```
+3
+5
+1 2
+2 1
+3 2
+1 2
+3 1
+```
+*Note : We definitely need to remove duplicating edges before running the EulerInequality()*
