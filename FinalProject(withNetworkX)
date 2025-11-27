@@ -1,4 +1,4 @@
-import networkX as nx
+import networkx as nx
 G = nx.Graph()
 
 # get the input
