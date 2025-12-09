@@ -1,13 +1,18 @@
 # Mini Documentation
 
 ## To Do List
-1. In the initialize(), make sure duplicate inputs are not appended and then decrement the edgeCount
-2. Find a way to visualize the graph
+~~1. In the initialize(), make sure duplicate inputs are not appended and then decrement the edgeCount~~
+~~1.1 Yeah, scrap that, just assume the user doesn't do duplicate edges, just proceed with standard inputs~~
+~~2. Find a way to visualize the graph~~
 3. If possible, list the edges that overlap
 4. **IF SUPER POSSIBLE**, suggest changes to our current graph
+5. Make Presentation PPT/Canva
 
 ## Link to Canva (FP Proposal)
 https://www.canva.com/design/DAG4XHMYC4A/wiBz02iJiYRmIO4jYPUGBw/edit?utm_content=DAG4XHMYC4A&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+## Link to Canva (FP Report)
+`Insert canva link here.`
 
 ## Reference
 https://informatika.stei.itb.ac.id/~rinaldi.munir/Matdis/2024-2025/Makalah/Makalah-IF1220-Matdis-2024%20(156).pdf
@@ -46,6 +51,12 @@ and it'll still be the same.
 ## K3,3 and K5 Graph
 <img width="1095" height="493" alt="image" src="https://github.com/user-attachments/assets/8b6fc8db-5de6-4c80-a76e-bdb0733a6c2e" />
 
+## How to Use Our Code
+1. Run the code
+2. Input the amount of vertices and hit ENTER
+3. Input the amount of edges and hit ENTER
+4. For every edge you have, type in the format of: u v, where u is a vertex and v is u's neighbor
+
 ## Suggestion from Pak Ilham
 1. During the FP Presentation, he'll ask you to explain how NetworkX is used
 2. Try to code the visualization
@@ -76,3 +87,199 @@ and it'll still be the same.
 3 1
 ```
 The "e <= 2*v - 4" is actually kinda wrong as it says the test case above is not planar. So, we removed that. We haven't done the edge unification from Test Case 1 yet though.
+
+**TEST CASE 3:** <br>
+Input:
+```
+4
+6
+1 2
+2 4
+4 3
+3 1
+2 3
+1 4
+```
+Expected Output:
+```
+How many vertices are in your graph? How many edges are in your graph? Input your edges:
+
+There won't be any overlapping circuits! Yay!
+```
+
+<br>
+
+**TEST CASE 4:** <br>
+Input:
+```
+6
+9
+1 4
+2 5
+3 6
+2 4
+2 6
+1 5
+5 3
+3 4
+1 6
+```
+Expected Output:
+```
+How many vertices are in your graph? How many edges are in your graph? Input your edges:
+
+Oh no, there will be overlapping circuits no matter what...
+```
+
+<br>
+
+**TEST CASE 5:** <br>
+Input:
+```
+5
+10
+1 2
+2 4
+4 5
+5 3
+3 1
+1 4
+1 5
+2 3
+2 5
+3 4
+```
+Expected Output:
+```
+How many vertices are in your graph? How many edges are in your graph? Input your edges:
+
+Oh no, there will be overlapping circuits no matter what...
+```
+
+<br>
+
+**TEST CASE 6:** <br>
+Input:
+```
+6
+11
+1 2
+2 4
+4 5
+5 3
+3 1
+1 4
+1 5
+2 3
+2 5
+3 4
+3 6
+```
+Expected Output:
+```
+How many vertices are in your graph? How many edges are in your graph? Input your edges:
+
+Oh no, there will be overlapping circuits no matter what...
+```
+
+<br>
+
+**TEST CASE 7:** <br>
+Input:
+```
+7
+11
+1 4
+2 5
+3 6
+2 4
+2 6
+1 5
+5 3
+3 4
+1 6
+4 7
+7 6
+```
+Expected Output:
+```
+How many vertices are in your graph? How many edges are in your graph? Input your edges:
+
+Oh no, there will be overlapping circuits no matter what...
+```
+
+<br>
+
+**TEST CASE 8:** <br>
+Input:
+```
+5
+6
+1 4
+2 5
+5 3
+3 2
+2 4
+4 3
+```
+Expected Output:
+```
+How many vertices are in your graph? How many edges are in your graph? Input your edges:
+
+There won't be any overlapping circuits! Yay!
+```
+
+<br>
+
+**TEST CASE 9:** <br>
+Input:
+```
+7
+13
+1 2
+2 3
+3 4
+4 5
+5 1
+1 3
+3 5
+5 2
+2 4
+4 1
+1 7
+7 6
+6 4
+```
+Expected Output:
+```
+How many vertices are in your graph? How many edges are in your graph? Input your edges:
+
+Oh no, there will be overlapping circuits no matter what...
+```
+
+<br>
+
+**TEST CASE 10:** <br>
+Input:
+```
+6
+10
+1 6
+6 5
+5 1
+1 3
+3 4
+4 1
+2 3
+2 5
+5 3
+2 4
+```
+Expected Output:
+```
+How many vertices are in your graph? How many edges are in your graph? Input your edges:
+
+There won't be any overlapping circuits! Yay!
+```
+
+<br>
