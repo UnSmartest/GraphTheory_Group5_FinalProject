@@ -1,12 +1,12 @@
 # Mini Documentation
 
 ## To Do List
-~~1. In the initialize(), make sure duplicate inputs are not appended and then decrement the edgeCount~~
-~~1.1 Yeah, scrap that, just assume the user doesn't do duplicate edges, just proceed with standard inputs~~
-~~2. Find a way to visualize the graph~~
-3. If possible, list the edges that overlap
-4. **IF SUPER POSSIBLE**, suggest changes to our current graph
-5. Make Presentation PPT/Canva
+~~1. In the initialize(), make sure duplicate inputs are not appended and then decrement the edgeCount~~ <br>
+~~1.1 Yeah, scrap that, just assume the user doesn't do duplicate edges, just proceed with standard inputs~~ <br>
+~~2. Find a way to visualize the graph~~ <br>
+3. If possible, list the edges that overlap <br>
+4. **IF SUPER POSSIBLE**, suggest changes to our current graph <br>
+5. Make Presentation PPT/Canva <br>
 
 ## Link to Canva (FP Proposal)
 https://www.canva.com/design/DAG4XHMYC4A/wiBz02iJiYRmIO4jYPUGBw/edit?utm_content=DAG4XHMYC4A&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
@@ -17,7 +17,13 @@ https://www.canva.com/design/DAG4XHMYC4A/wiBz02iJiYRmIO4jYPUGBw/edit?utm_content
 ## Reference
 https://informatika.stei.itb.ac.id/~rinaldi.munir/Matdis/2024-2025/Makalah/Makalah-IF1220-Matdis-2024%20(156).pdf
 
-## How to use our graph planarity visualizer:
+## How to Use Our Code
+1. Run the "planarityChecker_modified2.py" code in your VSCode or any editor <br>
+2. Input the amount of vertices and hit ENTER <br>
+3. Input the amount of edges and hit ENTER <br>
+4. For every edge you have, type in the format of: u v, where u is a vertex and v is u's neighbor <br>
+
+## How to Use Our Graph Planarity Visualizer:
 1. download the "planarity_visualization.html" file
 2. run it on your local browser
 3. you know what, im just gonna host it on github pages
@@ -50,12 +56,6 @@ and it'll still be the same.
 
 ## K3,3 and K5 Graph
 <img width="1095" height="493" alt="image" src="https://github.com/user-attachments/assets/8b6fc8db-5de6-4c80-a76e-bdb0733a6c2e" />
-
-## How to Use Our Code
-1. Run the code
-2. Input the amount of vertices and hit ENTER
-3. Input the amount of edges and hit ENTER
-4. For every edge you have, type in the format of: u v, where u is a vertex and v is u's neighbor
 
 ## Suggestion from Pak Ilham
 1. During the FP Presentation, he'll ask you to explain how NetworkX is used
