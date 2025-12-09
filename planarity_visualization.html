@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Graph Visualizer (Simplified)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        #controls {
+            padding: 10px;
+            background-color: #333;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #addNodeBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #addNodeBtn:hover {
+            background-color: #45a049;
+        }
+
+        #addLinkBtn {
+            background-color: #00bcd4; 
+            color: white;
+        }
+        #addLinkBtn.active {
+            background-color: #e91e63; 
+        }
+
+        #resetGraphBtn {
+            background-color: #f44336;
+            color: white;
+        }
+        #resetGraphBtn:hover {
+            background-color: #da190b;
+        }
+
+        /* originally for the "delete selected node" button */
+        #canvasContainer {
+            margin-top: 10px;
+            border: 2px solid #ccc;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="controls">
+        <button id="addNodeBtn">Add Node</button>
+        <button id="addLinkBtn">Add Link</button> 
+        <button id="resetGraphBtn">Reset Graph</button>
+    </div>
+
+    <div id="canvasContainer">
+        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <!-- babe wake up there's a js library for making graphics  -->
+
+    <script>
+        // graph
+        let nodes = [];
+        let edges = [];
+
+        // interaction states
+        let draggingNode = null; 
+        let connectingNode = null; 
+
+        // link states
+        const MODE = { NORMAL: 'normal', ADD_LINK: 'addLink' };
+        let currentMode = MODE.NORMAL;
+        let linkSelection = []; 
+   
+        let isOverlapping = false; 
+
+        const NODE_RADIUS = 20;
+
+        // const deleteNodeBtn = document.getElementById('deleteNodeBtn');
+        const addNodeBtn = document.getElementById('addNodeBtn');
+        const resetGraphBtn = document.getElementById('resetGraphBtn');
+        const addLinkBtn = document.getElementById('addLinkBtn'); 
+
+    
+        function setup() {
+            const canvas = createCanvas(800, 600);
+            canvas.parent('canvasContainer');
+            addNode(width / 2, height / 2);
+
+            // deleteNodeBtn.addEventListener('click', deleteSelectedNode);
+            addNodeBtn.addEventListener('click', () => {
+                resetMode(); 
+                addNode(width / 2 + random(-100, 100), height / 2 + random(-100, 100));
+            });
+            resetGraphBtn.addEventListener('click', resetGraph);
+            addLinkBtn.addEventListener('click', toggleAddLinkMode); 
+        }
+
+        function toggleAddLinkMode() {
+            if (currentMode === MODE.ADD_LINK) {
+                resetMode();
+            } else {
+                currentMode = MODE.ADD_LINK;
+                linkSelection = [];
+                addLinkBtn.classList.add('active'); 
+            }
+        }
+
+        function resetMode() {
+            currentMode = MODE.NORMAL;
+            linkSelection = [];
+            addLinkBtn.classList.remove('active'); 
+        }
+
+
+
+        function draw() {
+            background(240); 
+            
+            // check overlap on every draw cycle
+            checkAllEdgesForOverlap();
+
+            // draw edges
+            stroke(50);
+            strokeWeight(2);
+            edges.forEach(edge => {
+                const a = nodes.find(n => n.id === edge.nodeA);
+                const b = nodes.find(n => n.id === edge.nodeB);
+                if (a && b) {
+                    line(a.x, a.y, b.x, b.y);
+                }
+            });
+
+            // draw temporary connecting line 
+            if (connectingNode && currentMode === MODE.NORMAL) {
+                stroke(0, 150, 255, 150); 
+                strokeWeight(3);
+                line(connectingNode.x, connectingNode.y, mouseX, mouseY);
+            }
+
+            // draw node
+            nodes.forEach(node => {
+                noStroke();
+                
+                let nodeFill;
+                if (isOverlapping) {
+                    // if overlap, set to red
+                    nodeFill = color(255, 69, 0); 
+                } else {
+                    nodeFill = color(100, 149, 237); 
+                }
+                
+                let selectionRingColor = null;
+
+                // link selection color change
+                if (currentMode === MODE.ADD_LINK) {
+                    if (linkSelection.length > 0 && linkSelection[0].id === node.id) {
+                        selectionRingColor = color(0, 200, 0); // green
+                    } else if (linkSelection.length === 2 && linkSelection[1].id === node.id) {
+                         selectionRingColor = color(200, 0, 0); // red ish pink
+                    }
+                }
+
+                //draw selection ring
+                if (selectionRingColor) {
+                    fill(selectionRingColor); 
+                    ellipse(node.x, node.y, NODE_RADIUS * 2 + 8); 
+                }
+
+                // draw node body
+                fill(nodeFill);
+                ellipse(node.x, node.y, NODE_RADIUS * 2);
+
+                // write node ID
+                fill(255); 
+                textAlign(CENTER, CENTER);
+                textSize(14);
+                text(node.id, node.x, node.y);
+            });
+        }
+
+
+        let nextNodeId = 1;
+
+        function addNode(x, y) {
+            nodes.push({
+                id: nextNodeId++,
+                x: x,
+                y: y
+            });
+        }
+
+        function getNodeAt(x, y) {
+            for (let node of nodes) {
+                const d = dist(x, y, node.x, node.y);
+                if (d < NODE_RADIUS) {
+                    return node;
+                }
+            }
+            return null;
+        }
+
+        function getEdge(idA, idB) {
+            const [minId, maxId] = idA < idB ? [idA, idB] : [idB, idA];
+            return edges.find(e => 
+                (e.nodeA === minId && e.nodeB === maxId)
+            );
+        }
+
+        function createEdge(node1, node2) {
+             if (node1.id === node2.id) return false; 
+            
+             if (!getEdge(node1.id, node2.id)) {
+                const [nodeA, nodeB] = node1.id < node2.id 
+                    ? [node1.id, node2.id] 
+                    : [node2.id, node1.id];
+
+                edges.push({ nodeA, nodeB });
+                return true;
+            }
+            return false;
+        }
+
+
+        function resetGraph() {
+            nodes = [];
+            edges = [];
+            nextNodeId = 1; 
+            
+            resetMode();
+            draggingNode = null;
+            connectingNode = null;
+            isOverlapping = false; 
+            addNode(width / 2, height / 2); 
+        }
+
+        // overlap detection
+        function checkLineIntersection(p1, p2, p3, p4) {
+            // Check if the lines share an endpoint (not considered an overlap)
+            if ( (p1.x === p3.x && p1.y === p3.y) || 
+                 (p1.x === p4.x && p1.y === p4.y) ||
+                 (p2.x === p3.x && p2.y === p3.y) ||
+                 (p2.x === p4.x && p2.y === p4.y) ) {
+                return false;
+            }
+
+            // Line segment A: p1 to p2
+            const dX1 = p2.x - p1.x;
+            const dY1 = p2.y - p1.y;
+
+            // Line segment B: p3 to p4
+            const dX2 = p4.x - p3.x;
+            const dY2 = p4.y - p3.y;
+
+            // Calculate the denominator of the intersection formula
+            const denominator = (dX1 * dY2) - (dY1 * dX2);
+
+            // If denominator is 0, lines are parallel (or collinear) - assuming no intersection for simplicity
+            if (denominator === 0) return false;
+
+            const sNumerator = (dY2 * (p3.x - p1.x) - dX2 * (p3.y - p1.y));
+            const tNumerator = (dY1 * (p3.x - p1.x) - dX1 * (p3.y - p1.y));
+
+            const s = sNumerator / denominator;
+            const t = tNumerator / denominator;
+
+            // If s and t are between 0 and 1, the segments intersect
+            return (s > 0.001 && s < 0.999) && (t > 0.001 && t < 0.999);
+        }
+
+        function checkAllEdgesForOverlap() {
+            if (edges.length < 2) {
+                isOverlapping = false;
+                return;
+            }
+
+            // 1. Map edge objects to their endpoint coordinates (p1, p2)
+            const edgePoints = edges.map(edge => {
+                const nodeA = nodes.find(n => n.id === edge.nodeA);
+                const nodeB = nodes.find(n => n.id === edge.nodeB);
+                // Simple filter here prevents errors if a node were deleted, though deletion logic is removed now.
+                return { 
+                    p1: { x: nodeA.x, y: nodeA.y }, 
+                    p2: { x: nodeB.x, y: nodeB.y }
+                };
+            }).filter(e => e.p1 && e.p2); 
+
+            // 2. Iterate through all unique pairs (i, j) where i < j
+            for (let i = 0; i < edgePoints.length; i++) {
+                for (let j = i + 1; j < edgePoints.length; j++) {
+                    const edge1 = edgePoints[i];
+                    const edge2 = edgePoints[j];
+
+                    if (checkLineIntersection(edge1.p1, edge1.p2, edge2.p1, edge2.p2)) {
+                        isOverlapping = true;
+                        return; // Found one intersection, stop and return true
+                    }
+                }
+            }
+
+            isOverlapping = false;
+        }
+        
+
+        function mousePressed() {
+            const hitNode = getNodeAt(mouseX, mouseY);
+
+            if (currentMode === MODE.ADD_LINK) {
+                if (hitNode) {
+                    if (linkSelection.length === 0) {
+                        linkSelection.push(hitNode);
+                    } else if (linkSelection.length === 1) {
+                        if (hitNode.id !== linkSelection[0].id) {
+                            linkSelection.push(hitNode);
+                            
+                            createEdge(linkSelection[0], linkSelection[1]);
+                            
+                            resetMode();
+                        } else {
+                            linkSelection = [];
+                        }
+                    }
+                } else {
+                    resetMode(); 
+                }
+                return; 
+            }
+
+
+            if (hitNode) {
+                if (mouseButton === LEFT) {
+                    draggingNode = hitNode;
+                    connectingNode = hitNode;
+                }
+            } else {
+                draggingNode = null; 
+                connectingNode = null;
+            }
+        }
+
+        function mouseDragged() {
+            if (draggingNode && currentMode === MODE.NORMAL) {
+                draggingNode.x = mouseX;
+                draggingNode.y = mouseY;
+            }
+        }
+
+        function mouseReleased() {
+            if (connectingNode && currentMode === MODE.NORMAL) {
+                const endNode = getNodeAt(mouseX, mouseY);
+                
+                // if dragged and released onto a different node, create an edge
+                if (endNode && endNode.id !== connectingNode.id) {
+                   createEdge(connectingNode, endNode);
+                }
+                
+                connectingNode = null;
+            }
+
+            draggingNode = null;
+        }
+
+        // prevent browser context menu on right click for P5 canvas
+        document.oncontextmenu = function() {
+            return false;
+        }
+
+    </script>
+
+</body>
+</html>
