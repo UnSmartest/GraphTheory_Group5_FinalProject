@@ -14,6 +14,9 @@ https://www.canva.com/design/DAG4XHMYC4A/wiBz02iJiYRmIO4jYPUGBw/edit?utm_content
 ## Link to Canva (FP Report)
 `Insert canva link here.`
 
+## Link to our Graph Planarity Simulator:
+https://isabelhyl.github.io/Graph-Planarity-Visual-Simulation/
+
 ## Reference
 https://informatika.stei.itb.ac.id/~rinaldi.munir/Matdis/2024-2025/Makalah/Makalah-IF1220-Matdis-2024%20(156).pdf
 
@@ -22,11 +25,6 @@ https://informatika.stei.itb.ac.id/~rinaldi.munir/Matdis/2024-2025/Makalah/Makal
 2. Input the amount of vertices and hit ENTER <br>
 3. Input the amount of edges and hit ENTER <br>
 4. For every edge you have, type in the format of: u v, where u is a vertex and v is u's neighbor <br>
-
-## How to Use Our Graph Planarity Visualizer:
-1. download the "planarity_visualization.html" file
-2. run it on your local browser
-3. you know what, im just gonna host it on github pages
 
 ## Brief Intro to Problem
 We're trying to check whether a circuit board can have no overlapping circuits. To do this, we check whether the circuit board is planar or not. So, for the code... Just get the input, create the graph, then simplify the graph by multiple means. After getting the simplest form of the graph, we check for a K3,3 or K5 subgraph. If a K3,3 or K5 subgraph exists, then it's not planar (meaning there's overlapping circuits). Otherwise, it is planar (meaning there isn't any overlapping circuits.)
