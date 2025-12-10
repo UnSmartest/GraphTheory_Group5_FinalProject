@@ -6,13 +6,13 @@
 ~~2. Find a way to visualize the graph~~ <br>
 3. If possible, list the edges that overlap <br>
 4. **IF SUPER POSSIBLE**, suggest changes to our current graph <br>
-5. Make Presentation PPT/Canva <br>
+~~5. Make Presentation PPT/Canva <br>~~
 
 ## Link to Canva (FP Proposal)
 https://www.canva.com/design/DAG4XHMYC4A/wiBz02iJiYRmIO4jYPUGBw/edit?utm_content=DAG4XHMYC4A&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ## Link to Canva (FP Report)
-`Insert canva link here.`
+https://www.canva.com/design/DAG7GYLU6eQ/AGbQ-iMF6R_M0mgWC9pUpw/edit?utm_content=DAG7GYLU6eQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ## Link to our Graph Planarity Simulator:
 https://isabelhyl.github.io/Graph-Planarity-Visual-Simulation/
