@@ -63,16 +63,20 @@ def elementaryReduction(g):
 
 def contains_k5(g):
     if g.number_of_nodes() < 5:
-        return False
+        return False, []
+    
     for subset_nodes in itertools.combinations(g.nodes(), 5):
         subgraph = g.subgraph(subset_nodes)
+        
         if subgraph.number_of_edges()==10:
-            return True
-    return False
+            return True, list(subgraph.edges())
+
+    return False, []
+
 
 def contains_k33(g):
     if g.number_of_nodes() < 6:
-        return False
+        return False, []
     
     nodes_list = list(g.nodes())
     for subset_nodes_tuple in itertools.combinations(nodes_list, 6):
@@ -86,35 +90,43 @@ def contains_k33(g):
             V2 = set(subset_nodes) - V1
             
             is_k33 = True
+            edges = []
             for u in V1:
                 for v in V2:
-                    if not g.has_edge(u, v):
+                    if g.has_edge(u, v):
+                        edges.append((u, v))
+                    else:
                         is_k33 = False
                         break
                 if not is_k33:
                     break
-            
+
             if is_k33:
-                return True
+                return True, edges
                 
-    return False
+    return False, []
         
     
 def k5k33(g):
-    if contains_k5(g):
+    found_k5, edges_k5 = contains_k5(g)
+    if found_k5:
         # print("CONTAINS K5")
-        return True
-    if contains_k33(g):
+        return True, edges_k5
+
+    found_k33, edges_k33 = contains_k33(g)
+    if found_k33:
         # print("CONTAINS K33")
-        return True
+        return True, edges_k33
+
     # print("DOESNT CONTAIN K33 OR K5")
-    return False
+    return False, []
    
 
 
   
 def main():
     g = nx.Graph()
+    forbidden_edges = []
 
     amountOfVertex = int(input("How many vertices are in your graph? "))
     amountOfEdge = int(input("How many edges are in your graph? "))
@@ -148,6 +160,7 @@ def main():
     if not euler_checker:
         # print("Euler inequality: FALSE") # debug
         planar = False
+        found_forbidden, forbidden_edges = k5k33(g)
         
     elif euler_checker == 4:
         planar = True
@@ -164,18 +177,29 @@ def main():
             planar = True
         else:
             # k33 and k5
-            if k5k33(reduced_g):
+            found_forbidden, forbidden_edges = k5k33(reduced_g)
+            if found_forbidden:
                 planar = False
             else:
                 planar = True
+
         
-    
+    # found_forbidden, forbidden_edges = k5k33(g)
+    # if found_forbidden:
+    #     planar = False
+    # else:
+    #     planar = True
     # planar, P = nx.check_planarity(g)
     
     if planar:
         print("There won't be any overlapping circuits! Yay!")
     else:
         print("Oh no, there will be overlapping circuits no matter what...")
+
+        print("\nRemove one of these edges to make the graph planar:")
+        for u, v in forbidden_edges:
+            print(u, v)
+
 
 
     # ACCURACY CHECKER (but why the FUCK is it saying that my fifth test case is planar, the fuck you mean)
