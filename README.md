@@ -4,8 +4,8 @@
 ~~1. In the initialize(), make sure duplicate inputs are not appended and then decrement the edgeCount~~ <br>
 ~~1.1 Yeah, scrap that, just assume the user doesn't do duplicate edges, just proceed with standard inputs~~ <br>
 ~~2. Find a way to visualize the graph~~ <br>
-3. If possible, list the edges that overlap <br>
-4. **IF SUPER POSSIBLE**, suggest changes to our current graph <br>
+~~3. If possible, list the edges that overlap <br>~~
+~~4. **IF SUPER POSSIBLE**, suggest changes to our current graph <br>~~
 ~~5. Make Presentation PPT/Canva <br>~~
 
 ## Link to Canva (FP Proposal)
