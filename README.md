@@ -21,7 +21,7 @@ https://isabelhyl.github.io/Graph-Planarity-Visual-Simulation/
 https://informatika.stei.itb.ac.id/~rinaldi.munir/Matdis/2024-2025/Makalah/Makalah-IF1220-Matdis-2024%20(156).pdf
 
 ## How to Use Our Code
-1. Run the "planarityChecker_modified2.py" code in your VSCode or any editor <br>
+1. Run the "planarityChecker_finalmodif.py" code in your VSCode or any editor <br>
 2. Input the amount of vertices and hit ENTER <br>
 3. Input the amount of edges and hit ENTER <br>
 4. For every edge you have, type in the format of: u v, where u is a vertex and v is u's neighbor <br>
