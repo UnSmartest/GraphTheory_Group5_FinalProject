@@ -196,7 +196,7 @@ def main():
     else:
         print("Oh no, there will be overlapping circuits no matter what...")
 
-        print("\nRemove one of these edges to make the graph planar:")
+        print("\nRemove one of these links to make the circuits not overlap:")
         for u, v in forbidden_edges:
             print(u, v)
 
