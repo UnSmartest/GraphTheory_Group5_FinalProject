@@ -63,6 +63,9 @@ and it'll still be the same.
 
 ## Some Test Case 
 
+![test cases tegraf](https://github.com/user-attachments/assets/fa14b45b-3fe0-4852-bf00-a8768eb3f8ac)
+
+
 **Test 1 to check whether EulerInequality() works**
 ```
 3
