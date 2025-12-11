@@ -79,6 +79,8 @@ and it'll still be the same.
 *Note : We definitely need to remove duplicating edges before running the EulerInequality() cuz this graph is technically planar. Look at image below as to why.*
 <img width="1047" height="695" alt="image" src="https://github.com/user-attachments/assets/25febdb6-a747-4797-ae44-7b1832568eb3" />
 
+But don't worry, in Network X's graph library, you cannot add duplicate edges. It will just assume the connection is one. So we don't have to think about it.
+
 **Test 2 to correct the Euler Inequality**
 ```
 3
@@ -87,7 +89,12 @@ and it'll still be the same.
 2 3
 3 1
 ```
-The "e <= 2*v - 4" is actually kinda wrong as it says the test case above is not planar. So, we removed that. We haven't done the edge unification from Test Case 1 yet though.
+Expected Output:
+```
+How many vertices are in your graph? How many edges are in your graph? Input your edges:
+
+There won't be any overlapping circuits! Yay!
+```
 
 **TEST CASE 3:** <br>
 Input:
@@ -130,6 +137,17 @@ Expected Output:
 How many vertices are in your graph? How many edges are in your graph? Input your edges:
 
 Oh no, there will be overlapping circuits no matter what...
+
+Remove one of these links to make the circuits not overlap:
+3 4
+3 5
+3 6
+2 4
+2 5
+2 6
+1 4
+1 5
+1 6
 ```
 
 <br>
@@ -155,6 +173,18 @@ Expected Output:
 How many vertices are in your graph? How many edges are in your graph? Input your edges:
 
 Oh no, there will be overlapping circuits no matter what...
+
+Remove one of these links to make the circuits not overlap:
+1 2
+1 3
+1 4
+1 5
+2 4
+2 3
+2 5
+4 5
+4 3
+5 3
 ```
 
 <br>
@@ -181,6 +211,18 @@ Expected Output:
 How many vertices are in your graph? How many edges are in your graph? Input your edges:
 
 Oh no, there will be overlapping circuits no matter what...
+
+Remove one of these links to make the circuits not overlap:
+1 2
+1 3
+1 4
+1 5
+2 4
+2 3
+2 5
+4 5
+4 3
+5 3
 ```
 
 <br>
@@ -204,9 +246,19 @@ Input:
 ```
 Expected Output:
 ```
-How many vertices are in your graph? How many edges are in your graph? Input your edges:
-
-Oh no, there will be overlapping circuits no matter what...
+7
+11
+1 4
+2 5
+3 6
+2 4
+2 6
+1 5
+5 3
+3 4
+1 6
+4 7
+7 6
 ```
 
 <br>
@@ -227,7 +279,18 @@ Expected Output:
 ```
 How many vertices are in your graph? How many edges are in your graph? Input your edges:
 
-There won't be any overlapping circuits! Yay!
+Oh no, there will be overlapping circuits no matter what...
+
+Remove one of these links to make the circuits not overlap:
+3 4
+3 5
+3 6
+2 4
+2 5
+2 6
+1 4
+1 5
+1 6
 ```
 
 <br>
@@ -256,6 +319,18 @@ Expected Output:
 How many vertices are in your graph? How many edges are in your graph? Input your edges:
 
 Oh no, there will be overlapping circuits no matter what...
+
+Remove one of these links to make the circuits not overlap:
+1 2
+1 3
+1 4
+1 5
+2 4
+2 3
+2 5
+4 5
+4 3
+5 3
 ```
 
 <br>
