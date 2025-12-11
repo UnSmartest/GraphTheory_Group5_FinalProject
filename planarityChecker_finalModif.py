@@ -202,7 +202,7 @@ def main():
 
 
 
-    # ACCURACY CHECKER (but why the FUCK is it saying that my fifth test case is planar, the fuck you mean)
+    # ACCURACY CHECKER 
     # is_planar, P = nx.check_planarity(g)
     # print(is_planar)
 
